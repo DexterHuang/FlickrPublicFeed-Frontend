@@ -1,0 +1,7 @@
+<div *ngIf="this.imageList">
+  <app-image-list-item [image]="image"
+    *ngFor="let image of this.imageList.items"></app-image-list-item>
+</div>
+<div *ngIf="!this.imageList">
+  <h1>Loading..</h1>
+</div>
