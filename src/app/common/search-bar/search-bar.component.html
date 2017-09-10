@@ -1,0 +1,11 @@
+<form action="">
+  <div class="input-group">
+    <input type="text" class="form-control"
+      placeholder="Search for..."
+      [(ngModel)]="this.searchText"
+      name="search" (keyup.enter)="this.onClickSearch()">
+    <span class="input-group-btn">
+          <button class="btn btn-secondary" type="button" (click)="this.onClickSearch()">Go!</button>
+        </span>
+  </div>
+</form>
