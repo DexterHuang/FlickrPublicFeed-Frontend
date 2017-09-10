@@ -13,5 +13,8 @@ export class HomePageComponent implements OnInit {
   ngOnInit() {
 
   }
-
+  onClickSearch(searchText) {
+    console.log(searchText)
+    this.flickr.refreshFeed(searchText);
+  }
 }
