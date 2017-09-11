@@ -15,6 +15,7 @@ Run `npm run serve` to build and host on an express.js server.
 ### Public Feed
 
 On landing page, flickr public feed is shown
+
 ![home page img](https://github.com/DexterHuang/FlickrPublicFeed-Frontend/blob/master/Demo%20Images/HomePage.jpg?raw=true)
 
 ### Search by Tag
