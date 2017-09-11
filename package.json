@@ -9,7 +9,8 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "serve": "ng build && node ./bin/www"
+    "serve": "ng build --env=prod && node ./bin/www",
+    "deploy": "ng build --env=prod && firebase deploy --only hosting"
   },
   "private": true,
   "dependencies": {
