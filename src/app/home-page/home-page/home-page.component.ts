@@ -14,7 +14,6 @@ export class HomePageComponent implements OnInit {
 
   }
   onClickSearch(searchText) {
-    console.log(searchText)
     this.flickr.refreshFeed(searchText);
   }
 }

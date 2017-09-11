@@ -1,4 +1,11 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { FlickrServiceMock } from './../../Mock/FlickrServiceMock';
+import { Http, HttpModule, JsonpModule } from '@angular/http';
+import { FlickrService } from './../../service/flickr-service/flickr.service';
+import { ImageListItemComponent } from './../../common/image-list-item/image-list-item.component';
+import { FormsModule } from '@angular/forms';
+import { ImageListComponent } from './../../common/image-list/image-list.component';
+import { SearchBarComponent } from './../../common/search-bar/search-bar.component';
+import { async, ComponentFixture, TestBed, inject } from '@angular/core/testing';
 
 import { HomePageComponent } from './home-page.component';
 
@@ -8,9 +15,22 @@ describe('HomePageComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ HomePageComponent ]
+      declarations: [HomePageComponent,
+        SearchBarComponent, ImageListItemComponent,
+        ImageListComponent]
+      ,
+      imports: [
+        FormsModule,
+        HttpModule,
+        JsonpModule
+      ],
+      providers: [FlickrService]
+    }).overrideComponent(HomePageComponent, {
+      set: {
+        providers: [{ provide: FlickrService, useClass: FlickrServiceMock }]
+      }
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {
@@ -20,6 +40,7 @@ describe('HomePageComponent', () => {
   });
 
   it('should be created', () => {
+
     expect(component).toBeTruthy();
   });
 });
