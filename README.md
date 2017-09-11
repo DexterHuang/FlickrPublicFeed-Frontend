@@ -8,6 +8,8 @@ An Simple Express.js is included in this project, because I have decided to let 
 
 ## To run the app
 
+Run `npm install` to install all dependencies
+
 Run `npm run serve` to build and host on an express.js server.
 
 ## Simple Demo
