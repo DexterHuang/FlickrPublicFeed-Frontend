@@ -5,7 +5,8 @@
       [(ngModel)]="this.searchText"
       name="search" (keyup.enter)="this.onClickSearch()">
     <span class="input-group-btn">
-          <button class="btn btn-secondary" type="button" (click)="this.onClickSearch()">Go!</button>
+          <button class="btn btn-secondary" type="button" (click)="this.onClickSearch()"
+          data-toggle="tooltip" data-placement="bottom" title="press enter to search">Go!</button>
         </span>
   </div>
 </form>
