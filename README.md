@@ -12,3 +12,13 @@ Run `npm run serve` to build and host on an express.js server.
 
 ## Simple Demo
 
+### Public Feed
+
+On landing page, flickr public feed is shown
+![home page img](https://github.com/DexterHuang/FlickrPublicFeed-Frontend/blob/master/Demo%20Images/HomePage.jpg?raw=true)
+
+### Search by Tag
+
+In the search bar, type in strings wish to search, and click the "Go!" button (or press enter)
+![search img](https://github.com/DexterHuang/FlickrPublicFeed-Frontend/blob/master/Demo%20Images/Search.jpg?raw=true)
+
