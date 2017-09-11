@@ -1,5 +1,7 @@
 # Flickr Public Feed
 
+This app is built using Angular2 as frontend and Express.js as the backend
+
 Live and hosted version of this app is [HERE](https://flickr-search-a8da6.firebaseapp.com/)
 
 This project displays Flickr's public feed at home page, and a search function allows user to search images by tags
