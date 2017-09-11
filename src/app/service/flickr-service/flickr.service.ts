@@ -7,23 +7,35 @@ export class FlickrService {
 
   private imageList: ImageList;
   private loading = true;
-  constructor(private http: Http, private jsonp: Jsonp) {
+  constructor(private jsonp: Jsonp) {
     this.refreshFeed()
   }
 
   // Feed is downloaded and chached
   public refreshFeed(searchText = '') {
-    this.loading = true;
-    // Making JSONP request directly to Flickr
-    this.jsonp.request(this.getURL(searchText), {
-      method: 'GET'
-    }).subscribe(r => {
-      const jsonObject = r.json()
-      const imageList = new ImageList();
-      Object.assign(imageList, jsonObject);
-      this.imageList = imageList;
-      this.loading = false;
+    this.getImageList(searchText);
+  }
+
+  // Make JSONP request directly to Flickr
+  private async getImageList(searchText: string) {
+    return new Promise<ImageList>((resolve, reject) => {
+      this.loading = true;
+      this.jsonp.request(this.getURL(searchText), {
+        method: 'GET'
+      }).subscribe(r => {
+        try {
+          const jsonObject = r.json()
+          const imageList = new ImageList();
+          Object.assign(imageList, jsonObject);
+          this.imageList = imageList;
+          this.loading = false;
+          return resolve(this.imageList);
+        } catch (e) {
+          return reject('Unable to pharse data: ' + e);
+        }
+      })
     })
+
   }
   public getURL(searchText = '') {
     const base = 'https://api.flickr.com/services/feeds/photos_public.gne?format=json&&jsoncallback=JSONP_CALLBACK';
@@ -44,20 +56,5 @@ export class FlickrService {
   }
   public isLoading() {
     return this.loading;
-  }
-  // Escape Unwanted chracters
-  public cleanString(str: string) {
-    let string = str;
-    string = string.replace(/\\n/g, '\\n')
-      .replace(/\\'/g, `\\\'`)
-      .replace(/\\"/g, '\\"')
-      .replace(/\\&/g, '\\&')
-      .replace(/\\r/g, '\\r')
-      .replace(/\\t/g, '\\t')
-      .replace(/\\b/g, '\\b')
-      .replace(/\\f/g, '\\f');
-    // remove non-printable and other non-valid JSON chars
-    string = string.replace(/[\u0000-\u0019]+/g, '');
-    return string;
   }
 }
