@@ -1,4 +1,8 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ImageListItemComponent } from './../image-list-item/image-list-item.component';
+import { ImageList } from './../../Model/ImageList';
+import { HttpModule, JsonpModule, Jsonp, Http } from '@angular/http';
+import { FlickrService } from './../../service/flickr-service/flickr.service';
+import { async, ComponentFixture, TestBed, inject } from '@angular/core/testing';
 
 import { ImageListComponent } from './image-list.component';
 
@@ -8,14 +12,15 @@ describe('ImageListComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ImageListComponent ]
+      declarations: [ImageListComponent, ImageListItemComponent]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {
     fixture = TestBed.createComponent(ImageListComponent);
     component = fixture.componentInstance;
+    component.imageList = new ImageList();
     fixture.detectChanges();
   });
 
