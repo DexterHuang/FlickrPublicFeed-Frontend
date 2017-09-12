@@ -12,14 +12,15 @@ export class FlickrService {
   }
 
   // Feed is downloaded and chached
-  public refreshFeed(searchText = '') {
-    this.getImageList(searchText);
+  public async refreshFeed(searchText = '') {
+    this.loading = true;
+    this.imageList = await this.getImageList(searchText);
+    this.loading = false;
   }
 
   // Make JSONP request directly to Flickr
   private async getImageList(searchText: string) {
     return new Promise<ImageList>((resolve, reject) => {
-      this.loading = true;
       this.jsonp.request(this.getURL(searchText), {
         method: 'GET'
       }).subscribe(r => {
@@ -28,7 +29,6 @@ export class FlickrService {
           const imageList = new ImageList();
           Object.assign(imageList, jsonObject);
           this.imageList = imageList;
-          this.loading = false;
           return resolve(this.imageList);
         } catch (e) {
           return reject('Unable to pharse data: ' + e);
